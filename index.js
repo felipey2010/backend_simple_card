@@ -6,8 +6,6 @@ const requireDir = require("require-dir");
 // const routes = require("./src/routes");
 
 const mongoose = require("mongoose");
-REACT_APP_DBURL =
-  "mongodb+srv://phil:admin1234@cluster0.lwb9i.mongodb.net/simpleCards?retryWrites=true&w=majority";
 //Conexão com MongoDB
 mongoose.connect(process.env.REACT_APP_DBURL, {
   useNewUrlParser: true,
@@ -35,5 +33,5 @@ app.use("/api", require("./src/routes"));
 // });
 
 app.listen(PORT, function () {
-  console.log("Now listening for request port: " + process.env.REACT_APP_PORT);
+  console.log("Now listening for request port: " + process.env.REACT_APP_PORT || 500);
 });
