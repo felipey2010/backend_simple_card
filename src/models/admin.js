@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const saltRound = 10;
+const result = require("dotenv").config();
+if (result.erro) {
+  throw result.error;
+}
+
+const saltRound = process.env.REACT_APP_saltRound;
 
 const AdminSchema = new Schema({
   name: {

@@ -1,18 +1,19 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-// const result = require("dotenv").config();
+const result = require("dotenv").config();
+
+if (result.erro) {
+  throw result.error;
+}
 
 const requireDir = require("require-dir");
 // const routes = require("./src/routes");
 const mongoose = require("mongoose");
 
 //Conexão com MongoDB
-const DB_Host =
-  "mongodb+srv://phil:admin1234@cluster0.lwb9i.mongodb.net/simpleCards?retryWrites=true&w=majority";
-
 mongoose
-  .connect(DB_Host, {
+  .connect(process.env.REACT_APP_DBURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
