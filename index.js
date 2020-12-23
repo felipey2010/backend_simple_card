@@ -1,18 +1,26 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
+const result = require("dotenv").config();
+
+if (result.error) {
+  throw result.error;
+}
+
 const requireDir = require("require-dir");
 // const routes = require("./src/routes");
 
 const mongoose = require("mongoose");
 //Conexão com MongoDB
-mongoose.connect(process.env.REACT_APP_DBURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+mongoose
+  .connect(process.env.REACT_APP_DBURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
+  .catch(error => console.log(error));
+
 //Test the connection to the database
 let db = mongoose.connection;
 db.on("error", function (error) {
@@ -36,7 +44,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-const PORT = process.env.REACT_APP_PORT || 5000;
+const PORT = 5000;
 
 app.listen(PORT, function () {
   console.log("Now listening for request on port: " + PORT);
