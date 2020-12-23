@@ -33,7 +33,11 @@ app.use("/api", require("./src/routes"));
 // });
 
 app.listen(PORT, function () {
+<<<<<<< HEAD
   console.log(
     "Now listening for request port: " + process.env.REACT_APP_PORT || 5000
   );
+=======
+  console.log("Now listening for request port: " + process.env.REACT_APP_PORT || 5000);
+>>>>>>> 8bcff3b2511ddc99ea1ee6e6bd92f42c739892d7
 });
