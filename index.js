@@ -9,11 +9,14 @@ if (result.error) {
 
 const requireDir = require("require-dir");
 // const routes = require("./src/routes");
-
 const mongoose = require("mongoose");
 //Conexão com MongoDB
+
+const DB_Host =
+  "mongodb+srv://phil:admin1234@cluster0.lwb9i.mongodb.net/simpleCards?retryWrites=true&w=majority";
+
 mongoose
-  .connect(process.env.REACT_APP_DBURL, {
+  .connect(process.env.REACT_APP_DBURL || DB_Host, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
