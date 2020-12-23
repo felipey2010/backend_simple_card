@@ -31,8 +31,13 @@ app.use("/api", require("./src/routes"));
 // app.use(function (err, req, res, next) {
 //   res.status(422).send({ error: err.message });
 // });
-const PORT = process.env.REACT_APP_PORT;
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+const PORT = process.env.REACT_APP_PORT || 5000;
 
 app.listen(PORT, function () {
-  console.log("Now listening for request port: " + PORT);
+  console.log("Now listening for request on port: " + PORT);
 });
