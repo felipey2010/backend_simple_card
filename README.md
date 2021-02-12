@@ -1,3 +1,5 @@
+The project's frontend is [here](https://christmas-vibe.herokuapp.com/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
