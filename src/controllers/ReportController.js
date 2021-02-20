@@ -1,39 +1,25 @@
 const mongoose = require("mongoose");
 
-const Cards = mongoose.model("cards");
+const Reports = mongoose.model("reports");
 
 module.exports = {
   async index(req, res) {
-    const dadoCard = await Cards.find();
+    const dadoCard = await Reports.find();
     return res.json(dadoCard);
   },
-  async showOne(req, res) {
-    const dadoCard = await Cards.find({
-      isPosted: true,
-    });
-    if (dadoCard) {
-      return res.json(dadoCard);
-    } else {
-      return res.json({
-        success: false,
-        message: "Not found",
-      });
-    }
-  },
   async show(req, res) {
-    const dadoCard = await Cards.findById(req.params.id);
+    const dadoCard = await Reports.findById(req.params.id);
     return res.json(dadoCard);
   },
   async store(req, res) {
-    Cards.create(req.body)
+    Reports.create(req.body)
       .then(result => {
         return res.json({
           success: true,
-          message: "Card Created",
+          message: "Report Created",
         });
       })
       .catch(err => {
-        console.log(err);
         return res.json({
           success: false,
           message: err,
@@ -41,13 +27,13 @@ module.exports = {
       });
   },
   async update(req, res) {
-    const dadoCard = await Cards.findByIdAndUpdate(req.params.id, req.body, {
+    const dadoCard = await Reports.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     })
       .then(result => {
         return res.json({
           success: true,
-          message: "Card updated",
+          message: "Report updated",
         });
       })
       .catch(err => ({
@@ -56,11 +42,11 @@ module.exports = {
       }));
   },
   async destroy(req, res) {
-    await Cards.findByIdAndDelete(req.params.id)
+    await Reports.findByIdAndDelete(req.params.id)
       .then(result => {
         return res.json({
           success: true,
-          message: "Card Deleted",
+          message: "Report Deleted",
         });
       })
       .catch(err => {

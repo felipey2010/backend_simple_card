@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CardSchema = new Schema({
-  userName: {
+const ReportSchema = new Schema({
+  name: {
     type: String,
     required: [true, "Name is required"],
   },
@@ -10,16 +10,20 @@ const CardSchema = new Schema({
     type: String,
     required: [true, "Message is required"],
   },
-  isPosted: {
-    type: Boolean,
-    default: true,
+  card_id: {
+    type: String,
+    required: [true, "Card id is required"],
   },
   year: {
     type: String,
     required: [true, "Year is required"],
   },
+  reason: {
+    type: String,
+    required: [true, "You need to give a reason"],
+  },
 });
 
-const Cards = mongoose.model("cards", CardSchema);
+const Reports = mongoose.model("reports", ReportSchema);
 
-module.exports = Cards;
+module.exports = Reports;

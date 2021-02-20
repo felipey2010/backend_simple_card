@@ -1,30 +1,30 @@
 const mongoose = require("mongoose");
 
-const Admins = mongoose.model("admins");
+const Years = mongoose.model("years");
 
 module.exports = {
   async index(req, res) {
-    const dadoAdmin = await Admins.find();
-    return res.json(dadoAdmin);
+    const dado = await Years.find();
+    return res.json(dado);
   },
   async show(req, res) {
-    const dadoAdmin = await Admins.findById(req.params.id);
-    return res.json(dadoAdmin);
+    const dado = await Years.findById(req.params.id);
+    return res.json(dado);
   },
   async store(req, res) {
-    const dadoAdmin = await Admins.find({ email: req.body.email });
+    const dado = await Years.find({ year: req.body.year });
 
-    if (dadoAdmin.length > 0) {
+    if (dado.length > 0) {
       return res.json({
         success: false,
-        message: "E-mail Already Exist",
+        message: "Year Already Exist",
       });
     } else {
-      Admins.create(req.body)
+      Years.create(req.body)
         .then(result => {
           return res.json({
             success: true,
-            message: "Admin Created",
+            message: "Year Created",
           });
         })
         .catch(err => {
@@ -37,13 +37,13 @@ module.exports = {
     }
   },
   async update(req, res) {
-    const dadoAdmin = await Admins.findByIdAndUpdate(req.params.id, req.body, {
+    const dado = await Years.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     })
       .then(result => {
         return res.json({
           success: true,
-          message: "Admin updated",
+          message: "Year updated",
         });
       })
       .catch(err => ({
@@ -52,11 +52,11 @@ module.exports = {
       }));
   },
   async destroy(req, res) {
-    await Admins.findByIdAndDelete(req.params.id)
+    await Years.findByIdAndDelete(req.params.id)
       .then(result => {
         return res.json({
           success: true,
-          message: "Admin Deleted",
+          message: "Year Deleted",
         });
       })
       .catch(err => {
